@@ -32,11 +32,6 @@ task salmon_quant {
     runtime {
         docker: "combinelab/salmon:latest"
     }
-
-    meta {
-        author: "Kayla Interdonato"
-        email : "Kayla.Morrell@roswellpark.org"
-        description: "Utilizing the salmon Docker container, perform salmon quantification."
 }
 
 workflow salmon {
@@ -60,4 +55,9 @@ workflow salmon {
         }
     }
 
+    meta {
+        author: "Kayla Interdonato"
+        email : "Kayla.Morrell@roswellpark.org"
+        description: "Utilizing the salmon Docker container, perform salmon   quantification."
+    }
 }
