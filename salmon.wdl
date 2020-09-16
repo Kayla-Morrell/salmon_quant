@@ -1,4 +1,3 @@
-version 1.0
 task salmon_index {
     File transcriptome_fasta
     String transcriptome_index_name
