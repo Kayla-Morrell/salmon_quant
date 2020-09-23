@@ -18,11 +18,11 @@ task salmon_index {
 task salmon_quant {
     File fastq1
     File fastq2
-    File transcriptome_index_name
+    File transcriptome_index
     String quant_name
 
     command {
-        salmon quant -i ${transcriptome_index_name} -l A \
+        salmon quant -i ${transcriptome_index} -l A \
         -1 ${fastq1} \
         -2 ${fastq2} \
         -p 8 --validateMappings -o ${quant_name}
@@ -50,7 +50,7 @@ workflow salmon {
             input:
             fastq1 = fastqs.left,
             fastq2 = fastqs.right,
-            transcriptome_index_name = transcriptome_index_name,
+            transcriptome_index = salmon_index.transcriptome_index,
             quant_name = "my_quant"
         }
     }
