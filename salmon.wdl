@@ -11,14 +11,14 @@ task salmon_index {
     }
 
     output {
-        File transcriptome_index = "${transcriptome_index_name}"
+        Directory transcriptome_index = "${transcriptome_index_name}"
     }
 }
 
 task salmon_quant {
     File fastq1
     File fastq2
-    File transcriptome_index
+    Directory transcriptome_index
     String quant_name
 
     command {
