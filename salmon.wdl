@@ -11,7 +11,7 @@ task salmon_index {
     }
 
     output {
-        Directory transcriptome_index = "./${transcriptome_index_name}"
+        Directory transcriptome_index = "./${transcriptome_index_name}/"
     }
 }
 
