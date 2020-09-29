@@ -29,10 +29,15 @@ task salmon_quant {
         -1 ${fastq1} \
         -2 ${fastq2} \
         -p 8 --validateMappings -o ${quant_name}
+        tar -cvzf ${quant_name}.tar.gz ${quant_name}
     }
 
     runtime {
         docker: "combinelab/salmon:latest"
+    }
+
+    output {
+        File quant_output = "${quant_name}.tar.gz"
     }
 }
 
