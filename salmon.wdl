@@ -21,15 +21,16 @@ task salmon_quant {
     File fastq2
     File transcriptome_index
     String transcriptome_index_name
-    String quant_name
+
+    String quant_out = basename(fastq1, ".fastq.gz")
 
     command {
         tar -xvzf ${transcriptome_index}
         salmon quant -i ${transcriptome_index_name} -l A \
         -1 ${fastq1} \
         -2 ${fastq2} \
-        -p 8 --validateMappings -o ${quant_name}
-        tar -cvzf ${quant_name}.tar.gz ${quant_name}
+        -p 8 --validateMappings -o ${quant_out}
+        tar -cvzf ${quant_out}.tar.gz ${quant_out}
     }
 
     runtime {
@@ -37,7 +38,7 @@ task salmon_quant {
     }
 
     output {
-        File quant_output = "${quant_name}.tar.gz"
+        File quant_output = "${quant_out}.tar.gz"
     }
 }
 
@@ -59,8 +60,7 @@ workflow salmon {
             fastq1 = fastqs.left,
             fastq2 = fastqs.right,
             transcriptome_index = salmon_index.transcriptome_index,
-            transcriptome_index_name = transcriptome_index_name,
-            quant_name = "my_quant"
+            transcriptome_index_name = transcriptome_index_name
         }
     }
 
